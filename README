@@ -1,5 +1,28 @@
+::::::::::::
 INSTALLATION
-Copy the FileBlog folder to your websites folder. Edit .htaccess file: set the redirect base to your website url.
+::::::::::::
+In general: Copy the FileBlog folder to your websites folder. Edit .htaccess file: set the redirect base to your website url.
+
+::::::::::::::::::
+LOCAL INSTALLATION
+::::::::::::::::::
+On a mac: 
+	Copy the FileBlog folder to /Users/username/Sites.
+	Activate PHP in the webserver installation that comes with OS X: 
+		In Terminal type: sudo nano /etc/apache2/httpd.conf. (OSX 10.7) or sudo nano /etc/httpd.conf
+		Hit Ctrl-W, search for php, delete the # in the line "LoadModule php5_module libexec/apache2/libphp5.so"
+		Hit Ctrl-X, type "yes", done
+	In System Preferences->Sharing (re)activate Websharing.
+	In Terminal type: nano ~/Sites/FileBlog/.htaccess on the line that starts with "RewriteBase" replace ~lukas with ~username
+
+On Windows:
+	Install a webserver like WAMP, copy FileBlog to your htdocs (or alike) folder. Edit the .htaccess file as explained above (last line in the mac section).
+
+:::::::::::
+DESCRIPTION
+:::::::::::
+Once you installed FileBlog on a mac go to http://localhost/~yourusername/FileBlog. This explains everything a bit more appealing.
+(If it's not working try http://127.0.0.1/~yourusername/FileBlog)
 
 FileBlog is a file based website framework, that lets the user manage the content of a website by just establishing a file order that follows a few file naming conventions:
 1. Files with the same name get aggregated. This means text files serve as descriptions for images, images serve as thumbnails for videos/binary files. The aggregation depends on a order which is set by default, but which can be overridden as well with
@@ -9,7 +32,9 @@ FileBlog is a file based website framework, that lets the user manage the conten
 5. the FileBlog system features nice URL's. http://www.yourdomain.com/mywork will be resolved as http://www.yourdomain.com/your_content_directory/03-mywork.plugin/
 6. Everything starting with a "_" will be ignored/invisible and/or indicates that it should not be touched by the end user but only by admins/developers.
 
+::::::::::::::::::
 Code Organisation:
+::::::::::::::::::
 0. Folder Organisation: 
 	_cache/ is for thumbnails and unpacked zip file etc.
 	_control/ is where all core system files are located

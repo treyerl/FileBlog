@@ -16,6 +16,9 @@ RewriteRule ^(.*)$ _control/index.php/$1 [L]
 RewriteRule ^(/)?$ _control/index.php [L]
 
 */
+
+error_reporting(E_ALL ^ E_NOTICE);
+
 require_once('config.php');
 require_once('_array.php');
 require_once('_defaults.php');
