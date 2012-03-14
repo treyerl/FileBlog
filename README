@@ -9,28 +9,41 @@ LOCAL INSTALLATION
 On a mac: 
 	Copy the FileBlog folder to /Users/username/Sites.
 	Activate PHP in the webserver installation that comes with OS X: 
-		In Terminal type: sudo nano /etc/apache2/httpd.conf. (OSX 10.7) or sudo nano /etc/httpd.conf
-		Hit Ctrl-W, search for php, delete the # in the line "LoadModule php5_module libexec/apache2/libphp5.so"
+		In Terminal type: sudo nano /etc/apache2/httpd.conf. (OSX 10.7) 
+			or sudo nano /etc/httpd.conf
+		Hit Ctrl-W, search for php, delete the # in the line 
+			"LoadModule php5_module libexec/apache2/libphp5.so"
 		Hit Ctrl-X, type "yes", done
 	In System Preferences->Sharing (re)activate Websharing.
-	In Terminal type: nano ~/Sites/FileBlog/.htaccess on the line that starts with "RewriteBase" replace ~lukas with ~username
+	In Terminal type: nano ~/Sites/FileBlog/.htaccess on the line that starts 
+		with "RewriteBase" replace ~lukas with ~username
 
 On Windows:
-	Install a webserver like WAMP, copy FileBlog to your htdocs (or alike) folder. Edit the .htaccess file as explained above (last line in the mac section).
+	Install a webserver like WAMP, copy FileBlog to your htdocs (or alike) folder. 
+	Edit the .htaccess file as explained above (last line in the mac section).
 
 :::::::::::
 DESCRIPTION
 :::::::::::
-Once you installed FileBlog on a mac go to http://localhost/~yourusername/FileBlog. This explains everything a bit more appealing.
+Once you installed FileBlog on a mac go to http://localhost/~yourusername/FileBlog. 
+This explains everything a bit more appealing.
 (If it's not working try http://127.0.0.1/~yourusername/FileBlog)
 
 FileBlog is a file based website framework, that lets the user manage the content of a website by just establishing a file order that follows a few file naming conventions:
-1. Files with the same name get aggregated. This means text files serve as descriptions for images, images serve as thumbnails for videos/binary files. The aggregation depends on a order which is set by default, but which can be overridden as well with
-2. plugins: you can write plugins, that establish a new file naming convention in a folder that is identified by its ending; e.g. parentfolder/folder.myplugin/
-3. By default filenames follow this scheme: numeration/date-name.extension, e.g. 20120101-name.jpg or 01-name.jpg;
-4. Files with the same name as their parent serve as metafiles for this parentfolder and get aggregated to the parent folder; e.g. parent/project1/project1.jpg is a thumbnail for folder project1
-5. the FileBlog system features nice URL's. http://www.yourdomain.com/mywork will be resolved as http://www.yourdomain.com/your_content_directory/03-mywork.plugin/
-6. Everything starting with a "_" will be ignored/invisible and/or indicates that it should not be touched by the end user but only by admins/developers.
+1. 	Files with the same name get aggregated. This means text files serve as descriptions 
+	for images, images serve as thumbnails for videos/binary files. The aggregation depends on a 
+	order which is set by default, but which can be overridden as well with
+2. 	plugins: you can write plugins, that establish a new file naming convention in a folder 
+	that is identified by its ending; e.g. parentfolder/folder.myplugin/
+3. 	By default filenames follow this scheme: numeration/date-name.extension, 
+	e.g. 20120101-name.jpg or 01-name.jpg;
+4. 	Files with the same name as their parent serve as metafiles for this parentfolder 
+	and get aggregated to the parent folder; e.g. parent/project1/project1.jpg is a thumbnail 
+	for folder project1
+5. 	the FileBlog system features nice URL's. http://www.yourdomain.com/mywork will be resolved 
+	as http://www.yourdomain.com/your_content_directory/03-mywork.plugin/
+6. 	Everything starting with a "_" will be ignored/invisible and/or indicates that it should not 
+	be touched by the end user but only by admins/developers.
 
 ::::::::::::::::::
 Code Organisation:
@@ -44,14 +57,32 @@ Code Organisation:
 
 	These foldernames as well as other settings can be set in the config.php file
 
-1. there is a .htaccess file, that is absolutely mandatory. It redirects all URLs to http://www.yourdomain.com/_control/index.php (once you rename your _control/ folder you should change your .htaccess file too)
-2. FileBlog is coded in php and with OO philosophy. Nevertheless all information about a filesystem object are stored in an array, since FileBlog features a template/dictionary system, that uses php's preg_replace function, a regular-expression-replace-function, that will replace all your file attributes in your array and integrate them into a string predefined in your dictionary. example: the dictionary for your file looks like "<li class='@filetype'><img src='@src_url'>@name</li>". Then while encoding all your @attribute strings get replaced will the real value. Since preg_replace() accepts arrays, all attributes of your files are stored in a array called "iteminfo";
-3. The main class is called "FileSystemObject". "Folder" is a subclass of it as "Image" and "Text" are as well.
+1. 	there is a .htaccess file, that is absolutely mandatory. It redirects all URLs to 
+	http://www.yourdomain.com/_control/index.php (once you rename your _control/ folder 
+	you should change your .htaccess file too)
+2. 	FileBlog is coded in php and with OO philosophy. Nevertheless all information about a 
+	filesystem object are stored in an array, since FileBlog features a template/dictionary 
+	system, that uses php's preg_replace function, a regular-expression-replace-function, 
+	that will replace all your file attributes in your array and integrate them into a string 
+	predefined in your dictionary. example: the dictionary for your file looks like 
+	"<li class='@filetype'><img src='@src_url'>@name</li>". 
+	Then while encoding all your @attribute strings get replaced will the real value. 
+	Since preg_replace() accepts arrays, all attributes of your files are stored in an 
+	array called "iteminfo";
+3. 	The main class is called "FileSystemObject". "Folder" is a subclass of it as 
+	"Image" and "Text" are as well.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 4. There are two main possibilities to customize FileBlog to your needs: 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	1. Write a plugin, which is simply a php class that inherits from "FileSystemObject". Store it in a folder called "file.Type" or "folder.Type" which should be put into the "extensions" folder.
-	2. Write a template. Copy the "default" template and adapt it to your needs. Ensure you provide an encode function in the function.php file. The style of your website is mainly controlled with the dictionary.php file and your style.css or style.css.php. Stick to those names. As given in rule no 6 underscores will be ignored/treated specially. Refer to the Template class in _control/_Template.php if you want to know more.
+	1. 	Write a plugin, which is simply a php class that inherits from "FileSystemObject". 
+		Store it in a folder called "file.Type" or "folder.Type" which should be put into 
+		the "extensions" folder.
+	2. 	Write a template. Copy the "default" template and adapt it to your needs. 
+		Ensure you provide an encode function in the function.php file. 
+		The style of your website is mainly controlled with the dictionary.php file and 
+		your style.css or style.css.php. Stick to those names. As given in rule no 6 (DESCRIPTION)
+		underscores will be ignored/treated specially. Refer to the Template class in 
+		_control/_Template.php if you want to know more.
 
 Please contribute your plugins to the community as it makes sense.
 
