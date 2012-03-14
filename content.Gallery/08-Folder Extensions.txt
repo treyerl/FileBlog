@@ -1,0 +1,1 @@
+Extending the standard folder class you can define any naming conventions, even unzip open document formats (like .docx or .pages) and and translate its file structure to html.

@@ -1,0 +1,1 @@
+Use FileBlog and its Gallery Extension to publish your photographs quickly - automatic thumbnail creation and image rotation (exif!) included.

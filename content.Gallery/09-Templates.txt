@@ -1,0 +1,1 @@
+Change the look and feel of your website by just adding new templates to your templates folder.

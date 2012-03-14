@@ -1,0 +1,1 @@
+FileBlog is a file based website framework, that lets the user manage the content of a website by just establishing a file order that follows a few file naming conventions:

@@ -1,0 +1,1 @@
+Any file with a leading underscore will be ignored. Of course you can customize this behavior with folder plugins (extensions).

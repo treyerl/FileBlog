@@ -1,0 +1,1 @@
+Preview Binary Data with just providing an image with the same name as your binary file. The image is being used as a thumbnail.

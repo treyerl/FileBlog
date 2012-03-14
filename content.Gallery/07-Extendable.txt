@@ -1,0 +1,1 @@
+Use standard object oriented class extensions to write your own plugins in php and extend the standard class FileSystemObject. Or use one of the plugins others share with you.

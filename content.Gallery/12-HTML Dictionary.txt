@@ -1,0 +1,1 @@
+Encode all information about your files and stored in your files with a simple dictionary. That's where you would mainly design your template (besides your style.css).

@@ -1,0 +1,1 @@
+Files with the same name as their parent folder are used as description for the folder.

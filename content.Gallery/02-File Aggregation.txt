@@ -1,0 +1,1 @@
+Files with the same name get aggregated according to its filetypes: Text files are used as descriptions for images, images as thumbnails for folders.

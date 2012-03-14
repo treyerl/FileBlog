@@ -1,0 +1,1 @@
+Just put __json in front of your URL and get the whole website / folder structure in json format. http://www.yourdomain.com/__json/ First Projections/Project Green/
